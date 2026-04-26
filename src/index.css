@@ -19,6 +19,6 @@
   }
   to {
     opacity: 1;
-    transfor: translateY(0);
+    transform: translateY(0);
   }
 }

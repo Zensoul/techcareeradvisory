@@ -1,4 +1,6 @@
 import { useEffect, useRef } from "react";
+import { Link } from "react-router-dom";
+
 
 export default function Hero() {
     const heroRef = useRef(null);
@@ -50,14 +52,21 @@ export default function Hero() {
                 </p>
 
                 <div className="mt-10 flex flex-col sm:flex-row gap-4 justify-center">
-                    <button className="px-6 py-3 bg-white text-slate-950 font-medium rounded-md hover:bg-slate-200 transition">
+                    <Link
+                        to="/fresher"
+                        className="px-6 py-3 bg-white text-slate-950 font-medium rounded-md hover:bg-slate-200 transition text-center"
+                    >
                         I’m a Student / Fresher
-                    </button>
+                    </Link>
 
-                    <button className="px-6 py-3 border border-slate-700 text-white font-medium rounded-md hover:border-slate-500 transition">
+                    <Link
+                        to="/experienced"
+                        className="px-6 py-3 border border-slate-700 text-white font-medium rounded-md hover:border-slate-500 transition text-center"
+                    >
                         I’m an Experienced Professional
-                    </button>
+                    </Link>
                 </div>
+
 
                 <p className="mt-6 text-sm text-slate-400">
                     We don’t work with everyone. Applications are reviewed before engagement.

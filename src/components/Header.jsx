@@ -2,56 +2,49 @@
 
 import { Menu, X } from "lucide-react";
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 export default function Header() {
   const [mobileMenuIsOpen, setMobileMenuIsOpen] = useState(false);
 
   return (
-    <nav className="fixed top-0 w-full z-50 bg-slate-950/20 backdrop-blur-sm">
+    <nav className="fixed top-0 w-full z-50 bg-slate-950/30 backdrop-blur-md border-b border-slate-800">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="flex justify-between items-center h-14 sm:h-16 lg:h-20">
+        <div className="flex justify-between items-center h-16 sm:h-18 lg:h-20">
           
           {/* Logo */}
-          <div className="flex items-center">
+          <Link to="/" className="flex items-center">
             <img
               src="/logo.png"
-              alt="TechCareerAdvisory logo – career positioning and advisory for tech professionals"
+              alt="TechCareerAdvisory logo"
               className="h-12 sm:h-14 lg:h-16 w-auto"
             />
-          </div>
+          </Link>
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-6 lg:space-x-8">
-            <a
-              href="/about"
-              className="text-gray-300 hover:text-white text-sm lg:text-base"
+            
+            <Link
+              to="/ai"
+              className="text-gray-300 hover:text-white text-sm lg:text-base transition"
             >
-              About
-            </a>
-            <a
-              href="/fresher"
-              className="text-gray-300 hover:text-white text-sm lg:text-base"
+              AI Solutions
+            </Link>
+
+            <Link
+              to="/advisory"
+              className="text-gray-300 hover:text-white text-sm lg:text-base transition"
+            >
+              Advisory
+            </Link>
+
+            <Link
+              to="/fresher"
+              className="text-gray-300 hover:text-white text-sm lg:text-base transition"
             >
               Freshers
-            </a>
-            <a
-              href="/experienced"
-              className="text-gray-300 hover:text-white text-sm lg:text-base"
-            >
-              Experienced
-            </a>
-            <a
-              href="/process"
-              className="text-gray-300 hover:text-white text-sm lg:text-base"
-            >
-              Process
-            </a>
-            <a
-              href="/apply"
-              className="text-gray-300 hover:text-white text-sm lg:text-base"
-            >
-              Apply
-            </a>
+            </Link>
+
           </div>
 
           {/* Mobile Menu Button */}
@@ -72,42 +65,32 @@ export default function Header() {
       {/* Mobile Navigation */}
       {mobileMenuIsOpen && (
         <div className="md:hidden bg-slate-950/95 backdrop-blur-lg border-t border-slate-800 animate-in slide-in-from-top duration-300">
-          <div className="px-4 py-4 sm:py-6 space-y-3">
-            <a
-              href="/about"
+          <div className="px-4 py-6 space-y-4">
+            
+            <Link
+              to="/ai"
               onClick={() => setMobileMenuIsOpen(false)}
               className="block text-gray-300 hover:text-white text-sm"
             >
-              About
-            </a>
-            <a
-              href="/fresher"
+              AI Solutions
+            </Link>
+
+            <Link
+              to="/advisory"
+              onClick={() => setMobileMenuIsOpen(false)}
+              className="block text-gray-300 hover:text-white text-sm"
+            >
+              Advisory
+            </Link>
+
+            <Link
+              to="/fresher"
               onClick={() => setMobileMenuIsOpen(false)}
               className="block text-gray-300 hover:text-white text-sm"
             >
               Freshers
-            </a>
-            <a
-              href="/experienced"
-              onClick={() => setMobileMenuIsOpen(false)}
-              className="block text-gray-300 hover:text-white text-sm"
-            >
-              Experienced
-            </a>
-            <a
-              href="/process"
-              onClick={() => setMobileMenuIsOpen(false)}
-              className="block text-gray-300 hover:text-white text-sm"
-            >
-              Process
-            </a>
-            <a
-              href="/apply"
-              onClick={() => setMobileMenuIsOpen(false)}
-              className="block text-gray-300 hover:text-white text-sm"
-            >
-              Apply
-            </a>
+            </Link>
+
           </div>
         </div>
       )}
