@@ -1,35 +1,10 @@
 import { useState } from "react";
 
 export default function ApplySaha() {
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    phone: "",
-    college: "",
-    degree: "",
-    github: "",
-    projects: "",
-    frontend: "",
-    backend: "",
-    track: "",
-    hours: "",
-    why: "",
-  });
-
-  function handleChange(e) {
-    setForm({ ...form, [e.target.name]: e.target.value });
-  }
-
-  function handleSubmit(e) {
-    e.preventDefault();
-    console.log(form);
-
-    alert("Application submitted. We will review and get back to you.");
-  }
+  const [submitted, setSubmitted] = useState(false);
 
   return (
     <div className="min-h-screen bg-slate-950 text-white px-6 py-24">
-
       <div className="max-w-3xl mx-auto">
 
         {/* Header */}
@@ -43,7 +18,16 @@ export default function ApplySaha() {
         </div>
 
         {/* Form */}
-        <form onSubmit={handleSubmit} className="mt-12 space-y-10">
+        <form
+          action="https://formsubmit.co/ca8682fac0a8a5574cc248d56e5445ad"
+          method="POST"
+          onSubmit={() => setSubmitted(true)}
+          className="mt-12 space-y-10"
+        >
+          {/* 🔥 REQUIRED HIDDEN FIELDS */}
+          <input type="hidden" name="_subject" value="New Internship Application" />
+          <input type="hidden" name="_captcha" value="false" />
+          <input type="hidden" name="_template" value="table" />
 
           {/* BASIC INFO */}
           <div>
@@ -54,7 +38,6 @@ export default function ApplySaha() {
                 type="text"
                 name="name"
                 placeholder="Full Name"
-                onChange={handleChange}
                 className="w-full p-3 bg-slate-900 border border-slate-800 rounded-md"
                 required
               />
@@ -63,7 +46,6 @@ export default function ApplySaha() {
                 type="email"
                 name="email"
                 placeholder="Email Address"
-                onChange={handleChange}
                 className="w-full p-3 bg-slate-900 border border-slate-800 rounded-md"
                 required
               />
@@ -72,7 +54,6 @@ export default function ApplySaha() {
                 type="text"
                 name="phone"
                 placeholder="Phone Number"
-                onChange={handleChange}
                 className="w-full p-3 bg-slate-900 border border-slate-800 rounded-md"
               />
             </div>
@@ -87,7 +68,6 @@ export default function ApplySaha() {
                 type="text"
                 name="college"
                 placeholder="College / University"
-                onChange={handleChange}
                 className="w-full p-3 bg-slate-900 border border-slate-800 rounded-md"
               />
 
@@ -95,7 +75,6 @@ export default function ApplySaha() {
                 type="text"
                 name="degree"
                 placeholder="Degree / Course"
-                onChange={handleChange}
                 className="w-full p-3 bg-slate-900 border border-slate-800 rounded-md"
               />
             </div>
@@ -110,21 +89,19 @@ export default function ApplySaha() {
                 type="text"
                 name="github"
                 placeholder="GitHub Profile Link"
-                onChange={handleChange}
                 className="w-full p-3 bg-slate-900 border border-slate-800 rounded-md"
               />
 
               <textarea
                 name="projects"
-                placeholder="Describe 1-2 projects you have built (what you did, not copy-paste)"
-                onChange={handleChange}
+                placeholder="Describe 1-2 projects you have built"
                 rows="4"
                 className="w-full p-3 bg-slate-900 border border-slate-800 rounded-md"
               />
             </div>
           </div>
 
-          {/* 🔥 TECHNICAL SKILLS (NEW SECTION) */}
+          {/* TECHNICAL SKILLS */}
           <div>
             <h2 className="text-lg font-medium mb-4">Technical Skills</h2>
 
@@ -132,16 +109,14 @@ export default function ApplySaha() {
               <input
                 type="text"
                 name="frontend"
-                placeholder="Frontend Technologies (e.g., React, Tailwind, HTML, JS)"
-                onChange={handleChange}
+                placeholder="Frontend (React, HTML, CSS...)"
                 className="w-full p-3 bg-slate-900 border border-slate-800 rounded-md"
               />
 
               <input
                 type="text"
                 name="backend"
-                placeholder="Backend Technologies (e.g., Node.js, FastAPI, PostgreSQL)"
-                onChange={handleChange}
+                placeholder="Backend (Node, FastAPI, DB...)"
                 className="w-full p-3 bg-slate-900 border border-slate-800 rounded-md"
               />
             </div>
@@ -153,14 +128,13 @@ export default function ApplySaha() {
 
             <select
               name="track"
-              onChange={handleChange}
               className="w-full p-3 bg-slate-900 border border-slate-800 rounded-md"
               required
             >
               <option value="">Select Track</option>
-              <option value="backend">Backend Engineering</option>
-              <option value="ai">AI / ML Engineering</option>
-              <option value="frontend">Frontend Engineering</option>
+              <option value="backend">Backend</option>
+              <option value="ai">AI / ML</option>
+              <option value="frontend">Frontend</option>
               <option value="qa">QA / DevOps</option>
             </select>
           </div>
@@ -171,14 +145,13 @@ export default function ApplySaha() {
 
             <select
               name="hours"
-              onChange={handleChange}
               className="w-full p-3 bg-slate-900 border border-slate-800 rounded-md"
               required
             >
               <option value="">Weekly Availability</option>
-              <option value="10">10-15 hours</option>
-              <option value="20">15-25 hours</option>
-              <option value="30">25-40 hours</option>
+              <option value="10">10–15 hours</option>
+              <option value="20">15–25 hours</option>
+              <option value="30">25–40 hours</option>
             </select>
           </div>
 
@@ -188,8 +161,7 @@ export default function ApplySaha() {
 
             <textarea
               name="why"
-              placeholder="Why do you want to work on this project? Be honest."
-              onChange={handleChange}
+              placeholder="Why do you want to work on this project?"
               rows="5"
               className="w-full p-3 bg-slate-900 border border-slate-800 rounded-md"
               required
@@ -206,6 +178,12 @@ export default function ApplySaha() {
             </button>
           </div>
 
+          {/* SUCCESS MESSAGE */}
+          {submitted && (
+            <p className="text-green-400 text-center mt-4">
+              Application submitted successfully. Please check your email for confirmation.
+            </p>
+          )}
         </form>
       </div>
     </div>
